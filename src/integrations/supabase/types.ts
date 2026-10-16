@@ -14,7 +14,288 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessment_attempts: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          answers: Json
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cv_drafts: {
+        Row: {
+          data: Json
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          data?: Json
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          data?: Json
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      deletion_requests: {
+        Row: {
+          created_at: string
+          id: string
+          reason: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          reason?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          reason?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      interview_notes: {
+        Row: {
+          id: string
+          note: string
+          question: string
+          question_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          note?: string
+          question: string
+          question_id: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          id?: string
+          note?: string
+          question?: string
+          question_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      opportunities: {
+        Row: {
+          created_at: string
+          deadline: string | null
+          follow_up: string | null
+          id: string
+          kind: string
+          link: string
+          notes: string
+          organisation: string
+          status: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          deadline?: string | null
+          follow_up?: string | null
+          id?: string
+          kind?: string
+          link?: string
+          notes?: string
+          organisation?: string
+          status?: string
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          deadline?: string | null
+          follow_up?: string | null
+          id?: string
+          kind?: string
+          link?: string
+          notes?: string
+          organisation?: string
+          status?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string
+          id: string
+          onboarded: boolean
+          onboarding: Json
+          programme: string
+          status: string
+          study_year: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string
+          id: string
+          onboarded?: boolean
+          onboarding?: Json
+          programme?: string
+          status?: string
+          study_year?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string
+          id?: string
+          onboarded?: boolean
+          onboarding?: Json
+          programme?: string
+          status?: string
+          study_year?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      project_progress: {
+        Row: {
+          id: string
+          milestones: Json
+          project_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          milestones?: Json
+          project_id: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          id?: string
+          milestones?: Json
+          project_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          answers: Json
+          category: string
+          created_at: string
+          id: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          answers: Json
+          category: string
+          created_at?: string
+          id?: string
+          score: number
+          total: number
+          user_id?: string
+        }
+        Update: {
+          answers?: Json
+          category?: string
+          created_at?: string
+          id?: string
+          score?: number
+          total?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      roadmap_tasks: {
+        Row: {
+          created_at: string
+          done: boolean
+          id: string
+          is_custom: boolean
+          position: number
+          stage: number
+          target_date: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          is_custom?: boolean
+          position?: number
+          stage: number
+          target_date?: string | null
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          is_custom?: boolean
+          position?: number
+          stage?: number
+          target_date?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      saved_careers: {
+        Row: {
+          career_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          career_id: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Update: {
+          career_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
