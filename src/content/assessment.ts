@@ -37,7 +37,10 @@ export type CareerScore = { careerId: string; interest: number | null; confidenc
 export function scoreAssessment(answers: Record<string, number>, careerIds: string[]): CareerScore[] {
   return careerIds.map((id) => {
     const avg = (type: AssessmentItem["type"]) => {
-      const vals = assessmentItems.filter((q) => q.type === type && q.careers.includes(id) && answers[q.id]).map((q) => answers[q.id]);
+      const vals = assessmentItems
+        .filter((q) => q.type === type && q.careers.includes(id))
+        .map((q) => answers[q.id])
+        .filter((v): v is number => typeof v === "number" && v > 0);
       return vals.length ? Math.round((vals.reduce((a, b) => a + b, 0) / vals.length) * 10) / 10 : null;
     };
     return { careerId: id, interest: avg("interest"), confidence: avg("confidence") };
