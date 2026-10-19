@@ -5,7 +5,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 
-const NAV_ITEMS = [{ to: "/dashboard", label: "Dashboard" }] as const;
+const NAV_ITEMS = [
+  { to: "/dashboard", label: "Dashboard" },
+  { to: "/assessment", label: "Assessment" },
+  { to: "/quizzes", label: "Quizzes" },
+  { to: "/careers", label: "Careers" },
+  { to: "/roadmap", label: "Roadmap" },
+] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
