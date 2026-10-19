@@ -5,7 +5,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 
-const NAV_ITEMS = [{ to: "/dashboard", label: "Dashboard" }] as const;
+const NAV_ITEMS = [
+  { to: "/dashboard", label: "Dashboard" },
+  { to: "/assessment", label: "Assessment" },
+  { to: "/quizzes", label: "Quizzes" },
+  { to: "/careers", label: "Careers" },
+  { to: "/roadmap", label: "Roadmap" },
+] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
@@ -26,7 +32,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Compass className="h-6 w-6 text-teal" aria-hidden />
             <span className="font-display text-lg font-bold text-primary">ICT Career Compass</span>
           </Link>
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 overflow-x-auto">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.to}
