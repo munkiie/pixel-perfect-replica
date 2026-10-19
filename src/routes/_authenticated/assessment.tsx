@@ -27,11 +27,11 @@ function AssessmentPage() {
 
   const done = Object.keys(answers).length;
   async function submit() {
-    if (done < assessmentItems.length) return toast.error("Please answer every statement.");
+    if (done < assessmentItems.length) { toast.error("Please answer every statement."); return; }
     setSaving(true);
     const { error } = await supabase.from("assessment_attempts").insert({ answers });
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setResult(answers);
     setAnswers({});
     window.scrollTo({ top: 0 });

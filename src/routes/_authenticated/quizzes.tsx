@@ -30,10 +30,10 @@ function QuizzesPage() {
 
   async function submit() {
     if (!active) return;
-    if (answers.filter((a) => a !== undefined).length < active.questions.length) return toast.error("Answer every question first.");
+    if (answers.filter((a) => a !== undefined).length < active.questions.length) { toast.error("Answer every question first."); return; }
     const score = scoreQuiz(active, answers);
     const { error } = await supabase.from("quiz_attempts").insert({ category: active.id, score, total: active.questions.length, answers });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setSubmitted(true);
     loadBest();
   }

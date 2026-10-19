@@ -30,7 +30,7 @@ function CareersPage() {
       setSaved(({ [id]: _, ...rest }) => rest);
     } else {
       const { data, error } = await supabase.from("saved_careers").insert({ career_id: id }).select("id").single();
-      if (error) return toast.error(error.message);
+      if (error) { toast.error(error.message); return; }
       setSaved((s) => ({ ...s, [id]: data.id }));
     }
   }

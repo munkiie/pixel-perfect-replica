@@ -44,7 +44,7 @@ function RoadmapPage() {
     const title = drafts[stage]?.trim();
     if (!title) return;
     const { error } = await supabase.from("roadmap_tasks").insert({ stage, title, is_custom: true, position: (tasks?.length ?? 0) + 1 });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setDrafts((d) => ({ ...d, [stage]: "" }));
     load();
   }
