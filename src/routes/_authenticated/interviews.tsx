@@ -16,7 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/_authenticated/interviews")({ head: () => pageHead("Interview practice", "Practise graduate, technical and STAR interview answers with structured guidance."), loader: ({ context }) => context.queryClient.ensureQueryData(studentDataOptions), component: InterviewsPage });
 function InterviewsPage() {
   const { data } = useSuspenseQuery(studentDataOptions); const qc = useQueryClient();
-  const [mode, setMode] = useState("General"); const [career, setCareer] = useState(careers[0].id); const [index, setIndex] = useState(0); const [started, setStarted] = useState(false);
+  const [mode, setMode] = useState("General"); const [career, setCareer] = useState(careers[0]?.id ?? "software"); const [index, setIndex] = useState(0); const [started, setStarted] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>(() => Object.fromEntries(data.notes.map(n => [n.question_id, n.note])));
   const [reveal, setReveal] = useState(false); const [busy, setBusy] = useState(false);
   const list = interviewQuestions.filter(q => q.mode === mode); const q = list[index];

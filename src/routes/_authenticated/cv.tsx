@@ -34,7 +34,9 @@ function CvPage() {
   function move(s: CvSection, offset: number) {
     const order = [...cv.order]; const from = order.indexOf(s); const to = from + offset;
     if (to < 0 || to >= order.length) return;
-    [order[from], order[to]] = [order[to], order[from]];
+    const first = order[from]; const second = order[to];
+    if (!first || !second) return;
+    order[from] = second; order[to] = first;
     change({ order });
   }
   async function save() {
@@ -98,7 +100,7 @@ function CvPage() {
         <div className="flex items-center justify-between"><h2 className="font-semibold">{section}</h2><div className="flex gap-1"><Button size="icon" variant="ghost" title="Move section up" aria-label="Move section up" disabled={cv.order.indexOf(section) === 0} onClick={() => move(section, -1)}><ArrowUp className="h-4 w-4" /></Button><Button size="icon" variant="ghost" title="Move section down" aria-label="Move section down" disabled={cv.order.indexOf(section) === cv.order.length - 1} onClick={() => move(section, 1)}><ArrowDown className="h-4 w-4" /></Button></div></div>
         {!cv.sections[section].length && <p className="text-sm text-muted-foreground">No entries yet.</p>}
         {cv.sections[section].map((entry, index) => <div key={entry.id} className="space-y-3 border-b border-border pb-6">
-          <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Entry {index + 1}</span><div className="flex"><Button size="icon" variant="ghost" aria-label="Move entry up" title="Move entry up" disabled={index === 0} onClick={() => { const list = [...cv.sections[section]]; [list[index - 1], list[index]] = [list[index], list[index - 1]]; entries(list); }}><ArrowUp className="h-4 w-4" /></Button><Button size="icon" variant="ghost" aria-label="Remove entry" title="Remove entry" onClick={() => entries(cv.sections[section].filter(e => e.id !== entry.id))}><Trash2 className="h-4 w-4" /></Button></div></div>
+          <div className="flex items-center justify-between"><span className="text-sm text-muted-foreground">Entry {index + 1}</span><div className="flex"><Button size="icon" variant="ghost" aria-label="Move entry up" title="Move entry up" disabled={index === 0} onClick={() => { const list = [...cv.sections[section]]; const previous = list[index - 1]; if (!previous) return; list[index - 1] = entry; list[index] = previous; entries(list); }}><ArrowUp className="h-4 w-4" /></Button><Button size="icon" variant="ghost" aria-label="Remove entry" title="Remove entry" onClick={() => entries(cv.sections[section].filter(e => e.id !== entry.id))}><Trash2 className="h-4 w-4" /></Button></div></div>
           {(["title", "subtitle", "dates", "detail"] as const).map(k => <Field key={k} label={{ title: "Title / skill / qualification", subtitle: "Organisation / institution", dates: "Dates (optional)", detail: "Details / evidence" }[k]} id={`${entry.id}-${k}`}>{k === "detail" ? <Textarea id={`${entry.id}-${k}`} value={entry[k]} onChange={e => entries(cv.sections[section].map(x => x.id === entry.id ? { ...x, [k]: e.target.value } : x))} /> : <Input id={`${entry.id}-${k}`} value={entry[k]} onChange={e => entries(cv.sections[section].map(x => x.id === entry.id ? { ...x, [k]: e.target.value } : x))} />}</Field>)}
         </div>)}
         <Button variant="outline" onClick={() => entries([...cv.sections[section], { id: crypto.randomUUID(), title: "", subtitle: "", dates: "", detail: "" }])}><Plus className="h-4 w-4" />Add entry</Button>
