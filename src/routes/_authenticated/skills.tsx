@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_authenticated/skills")({ head: () => pag
 function SkillsPage() {
   const { data } = useSuspenseQuery(studentDataOptions); const qc = useQueryClient();
   const [careerId, setCareerId] = useState(data.saved[0]?.career_id ?? "software");
-  const [ratings, setRatings] = useState<Record<string, unknown>>(() => readObject(readObject(data.profile?.onboarding).skillRatings));
+  const [ratings, setRatings] = useState<Record<string, unknown>>(() => readObject(readObject(data.profile?.onboarding)['skillRatings']));
   const [busy, setBusy] = useState(false);
   const career = careers.find(c => c.id === careerId) ?? careers[0];
   async function save() {
@@ -23,6 +23,7 @@ function SkillsPage() {
     const { error } = await supabase.from("profiles").update({ onboarding: { ...readObject(data.profile?.onboarding), skillRatings: ratings } as import("@/integrations/supabase/types").Json, updated_at: new Date().toISOString() }).eq("id", data.userId);
     if (error) toast.error(error.message); else { await qc.invalidateQueries({ queryKey: studentDataOptions.queryKey }); toast.success("Confidence ratings saved."); } setBusy(false);
   }
+  if (!career) return null;
   return <AppShell><h1 className="page-title">My skills</h1><p className="page-subtitle">Confidence is self-reported. Quiz scores are separate practice evidence.</p><div className="mt-6 flex flex-wrap items-end gap-4"><Field label="Career path" id="skills-career"><select id="skills-career" className="native-select" value={career.id} onChange={e => setCareerId(e.target.value)}>{careers.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}</select></Field><Button onClick={save} disabled={busy}>{busy ? "Saving…" : "Save ratings"}</Button></div>
     <p className="mt-6 text-xs text-muted-foreground">Importance: 1 = useful, 2 = important, 3 = core. General guidance, not an official employer ranking.</p>
     <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[650px] text-left text-sm"><thead className="border-b border-border text-muted-foreground"><tr>{["Skill", "Importance", "My confidence", "Latest quiz", "Next activity"].map(h => <th className="px-3 py-4 font-medium" key={h}>{h}</th>)}</tr></thead><tbody>{career.skills.map(s => {
