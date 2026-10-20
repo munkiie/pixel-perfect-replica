@@ -17,8 +17,11 @@ import { Route as AuthenticatedAssessmentRouteImport } from './routes/_authentic
 import { Route as AuthenticatedCareersRouteImport } from './routes/_authenticated/careers'
 import { Route as AuthenticatedCvRouteImport } from './routes/_authenticated/cv'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedInterviewsRouteImport } from './routes/_authenticated/interviews'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedProjectsRouteImport } from './routes/_authenticated/projects'
 import { Route as AuthenticatedQuizzesRouteImport } from './routes/_authenticated/quizzes'
+import { Route as AuthenticatedResourcesRouteImport } from './routes/_authenticated/resources'
 import { Route as AuthenticatedRoadmapRouteImport } from './routes/_authenticated/roadmap'
 
 const IndexRoute = IndexRouteImport.update({
@@ -60,14 +63,29 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedInterviewsRoute = AuthenticatedInterviewsRouteImport.update({
+  id: '/interviews',
+  path: '/interviews',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedProjectsRoute = AuthenticatedProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedQuizzesRoute = AuthenticatedQuizzesRouteImport.update({
   id: '/quizzes',
   path: '/quizzes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedResourcesRoute = AuthenticatedResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedRoadmapRoute = AuthenticatedRoadmapRouteImport.update({
@@ -84,8 +102,11 @@ export interface FileRoutesByFullPath {
   '/careers': typeof AuthenticatedCareersRoute
   '/cv': typeof AuthenticatedCvRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/interviews': typeof AuthenticatedInterviewsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/projects': typeof AuthenticatedProjectsRoute
   '/quizzes': typeof AuthenticatedQuizzesRoute
+  '/resources': typeof AuthenticatedResourcesRoute
   '/roadmap': typeof AuthenticatedRoadmapRoute
 }
 export interface FileRoutesByTo {
@@ -96,8 +117,11 @@ export interface FileRoutesByTo {
   '/careers': typeof AuthenticatedCareersRoute
   '/cv': typeof AuthenticatedCvRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/interviews': typeof AuthenticatedInterviewsRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/projects': typeof AuthenticatedProjectsRoute
   '/quizzes': typeof AuthenticatedQuizzesRoute
+  '/resources': typeof AuthenticatedResourcesRoute
   '/roadmap': typeof AuthenticatedRoadmapRoute
 }
 export interface FileRoutesById {
@@ -110,8 +134,11 @@ export interface FileRoutesById {
   '/_authenticated/careers': typeof AuthenticatedCareersRoute
   '/_authenticated/cv': typeof AuthenticatedCvRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/interviews': typeof AuthenticatedInterviewsRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/projects': typeof AuthenticatedProjectsRoute
   '/_authenticated/quizzes': typeof AuthenticatedQuizzesRoute
+  '/_authenticated/resources': typeof AuthenticatedResourcesRoute
   '/_authenticated/roadmap': typeof AuthenticatedRoadmapRoute
 }
 export interface FileRouteTypes {
@@ -124,8 +151,11 @@ export interface FileRouteTypes {
     | '/careers'
     | '/cv'
     | '/dashboard'
+    | '/interviews'
     | '/onboarding'
+    | '/projects'
     | '/quizzes'
+    | '/resources'
     | '/roadmap'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -136,8 +166,11 @@ export interface FileRouteTypes {
     | '/careers'
     | '/cv'
     | '/dashboard'
+    | '/interviews'
     | '/onboarding'
+    | '/projects'
     | '/quizzes'
+    | '/resources'
     | '/roadmap'
   id:
     | '__root__'
@@ -149,8 +182,11 @@ export interface FileRouteTypes {
     | '/_authenticated/careers'
     | '/_authenticated/cv'
     | '/_authenticated/dashboard'
+    | '/_authenticated/interviews'
     | '/_authenticated/onboarding'
+    | '/_authenticated/projects'
     | '/_authenticated/quizzes'
+    | '/_authenticated/resources'
     | '/_authenticated/roadmap'
   fileRoutesById: FileRoutesById
 }
@@ -219,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/interviews': {
+      id: '/_authenticated/interviews'
+      path: '/interviews'
+      fullPath: '/interviews'
+      preLoaderRoute: typeof AuthenticatedInterviewsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/onboarding': {
       id: '/_authenticated/onboarding'
       path: '/onboarding'
@@ -226,11 +269,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/projects': {
+      id: '/_authenticated/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof AuthenticatedProjectsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/quizzes': {
       id: '/_authenticated/quizzes'
       path: '/quizzes'
       fullPath: '/quizzes'
       preLoaderRoute: typeof AuthenticatedQuizzesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/resources': {
+      id: '/_authenticated/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof AuthenticatedResourcesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/roadmap': {
@@ -248,8 +305,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCareersRoute: typeof AuthenticatedCareersRoute
   AuthenticatedCvRoute: typeof AuthenticatedCvRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedInterviewsRoute: typeof AuthenticatedInterviewsRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+  AuthenticatedProjectsRoute: typeof AuthenticatedProjectsRoute
   AuthenticatedQuizzesRoute: typeof AuthenticatedQuizzesRoute
+  AuthenticatedResourcesRoute: typeof AuthenticatedResourcesRoute
   AuthenticatedRoadmapRoute: typeof AuthenticatedRoadmapRoute
 }
 
@@ -258,8 +318,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCareersRoute: AuthenticatedCareersRoute,
   AuthenticatedCvRoute: AuthenticatedCvRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedInterviewsRoute: AuthenticatedInterviewsRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+  AuthenticatedProjectsRoute: AuthenticatedProjectsRoute,
   AuthenticatedQuizzesRoute: AuthenticatedQuizzesRoute,
+  AuthenticatedResourcesRoute: AuthenticatedResourcesRoute,
   AuthenticatedRoadmapRoute: AuthenticatedRoadmapRoute,
 }
 
