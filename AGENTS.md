@@ -12,3 +12,4 @@
 - Shared student-data query options load owner-scoped private records only from authenticated client-only routes, keeping reusable career tools consistent.
 - CV drafts use a validated browser-safe data module; PDF generation dynamically loads jsPDF from the download action to avoid server runtime dependencies.
 - Each new content route uses the shared page-head helper for unique app-specific metadata.
+- Keep authenticated navigation in the shared AppShell and place all student-only routes under the existing client-only authenticated layout; this keeps private workflows consistently gated on desktop and mobile.
