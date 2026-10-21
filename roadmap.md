@@ -1,10 +1,8 @@
 # ICT Career Compass
 
-- [ ] Verify assessment, quiz, career and roadmap flows with a signed-in account.
-- [ ] Verify CV drafts, live preview and PDF export (implemented; untested).
-- [ ] Verify skill matrix, project tracking, interview practice and resources (implemented; untested).
-- [ ] Verify opportunity tracker (implemented; untested); build profile and account settings.
-- [ ] Apply dark technical design, desktop sidebar and mobile menu; connect dashboard actions.
-- [ ] Check tests, page metadata and desktop/mobile presentation.
+- [ ] Build profile and account settings.
+- [ ] Apply the dark technical palette, desktop sidebar and mobile navigation; connect dashboard cards.
+- [ ] Check tests and page metadata across public and authenticated routes.
+- [ ] Verify signed-in assessment, quiz, career, roadmap, CV, skills, projects, interviews, resources and opportunities flows.
 
-Remaining work is paused for available credits. Signed-in verification also needs an authorised account session.
+Signed-in verification requires an authorised account session; do not expose or request user credentials.
