@@ -129,18 +129,20 @@ function DashboardPage() {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => (
-            <Card key={card.title}>
-              <CardHeader>
-                <card.icon className="h-6 w-6 text-teal" aria-hidden />
-                <CardTitle className="text-base">{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
-              </CardHeader>
-              {card.stat && (
-                <CardContent>
-                  <p className="text-sm font-medium text-primary">{card.stat}</p>
-                </CardContent>
-              )}
-            </Card>
+            <Link key={card.title} to={card.to} className="group rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ring">
+              <Card className="h-full transition-colors group-hover:border-ring">
+                <CardHeader>
+                  <card.icon className="h-6 w-6 text-teal" aria-hidden />
+                  <CardTitle className="text-base">{card.title}</CardTitle>
+                  <CardDescription>{card.description}</CardDescription>
+                </CardHeader>
+                {card.stat && (
+                  <CardContent>
+                    <p className="text-sm font-medium text-primary">{card.stat}</p>
+                  </CardContent>
+                )}
+              </Card>
+            </Link>
           ))}
         </div>
       )}
