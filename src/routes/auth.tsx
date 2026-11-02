@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
@@ -90,6 +91,7 @@ function AuthPage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4 py-10">
+      <div className="fixed right-4 top-4"><ThemeToggle /></div>
       <div className="w-full max-w-md">
         <div className="mb-6 text-center">
           <Compass className="mx-auto h-9 w-9 text-teal" aria-hidden />
