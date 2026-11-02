@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState, type ReactNode } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -82,7 +83,10 @@ export function AppShell({ children }: { children: ReactNode }) {
               </SheetContent>
             </Sheet>
           </div>
-          <Button variant="ghost" size="sm" onClick={handleSignOut} className="hidden gap-2 lg:inline-flex"><LogOut className="h-4 w-4" />Sign out</Button>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <Button variant="ghost" size="sm" onClick={handleSignOut} className="hidden gap-2 lg:inline-flex"><LogOut className="h-4 w-4" />Sign out</Button>
+          </div>
         </header>
         <main className="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">{children}</main>
       </div>
