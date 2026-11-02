@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Compass, ClipboardList, Map, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,6 +27,7 @@ const FEATURES = [
 function Index() {
   return (
     <main className="min-h-screen bg-background">
+      <div className="fixed right-4 top-4"><ThemeToggle /></div>
       <section className="mx-auto flex max-w-3xl flex-col items-center px-5 pt-24 pb-16 text-center">
         <Compass className="h-12 w-12 text-teal" aria-hidden />
         <h1 className="mt-4 font-display text-4xl font-bold text-primary sm:text-5xl">
