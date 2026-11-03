@@ -219,6 +219,9 @@ function AuthPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
+                      <p className="text-xs text-muted-foreground">
+                        Use at least 8 characters with numbers and symbols — common passwords are rejected.
+                      </p>
                     </div>
                     <Button type="submit" className="w-full" disabled={busy}>
                       {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
