@@ -9,3 +9,4 @@
 Signed-in verification requires an authorised account session; do not expose or request user credentials.
 
 - [x] Fake-email signup verified end to end (auto-confirm on): made-up email signs up straight to onboarding and dashboard; unregistered email sign-in rejected with "Invalid login credentials"; password hint added to the sign-up form because known-breached passwords are rejected.
+- [x] Add Cloudflare Workers Vite configuration, Wrangler settings and scripts while retaining the Lovable preview configuration; deployment itself remains intentionally unrun.

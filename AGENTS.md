@@ -13,3 +13,4 @@
 - CV drafts use a validated browser-safe data module; PDF generation dynamically loads jsPDF from the download action to avoid server runtime dependencies.
 - Each new content route uses the shared page-head helper for unique app-specific metadata.
 - Keep authenticated navigation in the shared AppShell and place all student-only routes under the existing client-only authenticated layout; this keeps private workflows consistently gated on desktop and mobile.
+- Select the Lovable Vite wrapper only inside its sandbox and Cloudflare's official Vite plugin chain elsewhere, avoiding concurrent Nitro and Cloudflare deployment adapters while preserving preview tooling.
